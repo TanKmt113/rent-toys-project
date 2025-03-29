@@ -1,11 +1,8 @@
 <template>
-    <router-link :to="`/client/detail/${props.data._id}`">
-        <CardItem :data="props.data"></CardItem>
-    </router-link>
+  <CardItem :data="props.data"></CardItem>
 </template>
 <script setup>
-import { onMounted } from 'vue';
-import CardItem from './CardItem.vue';
-const props = defineProps(['data']);
+import CardItem from "./CardItem.vue";
+const props = defineProps(["data"]);
 </script>
 <style></style>

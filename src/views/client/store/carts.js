@@ -6,6 +6,8 @@ export const useCartStore = defineStore('cart', () => {
     const { proxy } = getCurrentInstance();
     const toast = useToast()
     const cart = ref([]);
+    const coupon  = ref([]);
+
 
     const getCartItems = () => {
         return cart.value;
@@ -13,7 +15,6 @@ export const useCartStore = defineStore('cart', () => {
     const getItem = async () => {
         const res = await API.get(`cart`);
         return res.data.metadata
-
     };
 
     const addToCart = async (product) => {
@@ -44,12 +45,22 @@ export const useCartStore = defineStore('cart', () => {
             console.log(error);
         }
     }
+    const discount =  (item) =>{
+        return item.price * (item.discount/100);
+    }
+
+    const setCoupon=(data)=>{
+        coupon.value = data;
+    }
+   
+
     return {
         cart,
         getItem,
         addToCart,
         getCartItems,
         removeItem,
-        updateCart
+        updateCart,
+        discount
     };
 });
